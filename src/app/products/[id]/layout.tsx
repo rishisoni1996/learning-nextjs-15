@@ -5,7 +5,7 @@ export default function ProductLayout({
 }) {
     return (
         <div>
-            <h1>Product Layout</h1>
+            <h1>List of products</h1>
             {children}
         </div>
     );

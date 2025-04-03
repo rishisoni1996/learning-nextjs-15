@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navigation } from "./components/navigation";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,42 +25,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <header className="bg-slate-900 text-white p-4 text-center">
-          <Navigation />
-          <nav className="flex items-center gap-4">
-            <a
-              className="text-sm font-medium text-foreground hover:text-primary"
-              href="/"
-            >
-              Home
-            </a>
-            <a
-              className="text-sm font-medium text-foreground hover:text-primary"
-              href="/about"
-            >
-              About
-            </a>
-            <a
-              className="text-sm font-medium text-foreground hover:text-primary"
-              href="/login"
-            >
-              Login
-            </a>
-          </nav>
-        </header>
-        {children}
-        <footer className="fixed bottom-0 left-0 right-0 z-10 flex items-center justify-center w-full h-[var(--geist-footer-height)] bg-background border-t border-solid border-black/[.08] dark:border-white/[.145]">
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-foreground">
-              © 2023 Next.js App. All rights reserved.
-            </span>
-          </div>
-        </footer>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <header className="bg-slate-900 text-white p-4 text-center">
+            <Navigation />
+          </header>
+          {children}
+          <footer className="fixed bottom-0 left-0 right-0 z-10 flex items-center justify-center w-full h-[var(--geist-footer-height)] bg-background border-t border-solid border-black/[.08] dark:border-white/[.145]">
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-foreground">
+                © 2025 Next.js App. All rights reserved.
+              </span>
+            </div>
+          </footer>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

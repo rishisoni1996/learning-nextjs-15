@@ -1,6 +1,5 @@
 export async function GET(request: Request, { params }: { params: { id: string } }) {
     const { id } = await params;
-    console.log("🚀 ~ GET ~ id:", id)
     const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
     const data = await res.json();
 
