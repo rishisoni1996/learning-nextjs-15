@@ -1,9 +1,10 @@
 export default async function User({
     params,
 }: {
-    params: { id: string };
+    params: Promise<{ id: string }>;
 }) {
-    const res = await fetch(`https://67ee9dbcc11d5ff4bf7a54b5.mockapi.io/users/${params.id}`, {
+    const { id } = await params;
+    const res = await fetch(`https://67ee9dbcc11d5ff4bf7a54b5.mockapi.io/users/${id}`, {
         cache: 'no-store',
     });
     const user = await res.json();
